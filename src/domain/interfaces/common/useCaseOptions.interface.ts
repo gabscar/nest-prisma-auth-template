@@ -21,8 +21,9 @@ interface IOrder<KeyOfEntity = string, Order = 'DESC' | 'ASC' | 'RAND'> {
 type IRelation<Relation> = {
   [Key in keyof Relation]: {
     table: Key;
-    values: Relation[Key] extends Array<unknown>
+    columns: Relation[Key] extends Array<unknown>
       ? (keyof Relation[Key][number])[]
       : (keyof Relation[Key])[];
+    relations?: IRelation<Relation[Key]>[];
   };
 }[keyof Relation];

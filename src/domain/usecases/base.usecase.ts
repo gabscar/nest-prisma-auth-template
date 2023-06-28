@@ -1,3 +1,3 @@
-export interface IBaseUseCase<I, O> {
-  execute(props: I, ...args: unknown[]): Promise<O>;
+export interface IBaseUseCase<I extends Array<any>, O> {
+  execute(...args: I): Promise<O>;
 }

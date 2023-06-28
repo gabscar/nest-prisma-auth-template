@@ -1,5 +1,7 @@
-import { IPaginationInput } from '../common/pagination.interface';
-
-export interface IFindAllUserInput extends IPaginationInput {
-  name?: string;
-}
+export type IFindAllUserInput = {
+  name: string;
+  pagination: {
+    page: number;
+    take: number;
+  };
+};

@@ -1,6 +1,6 @@
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["filteredRelationCount"]
+  
 }
 
 datasource db {
@@ -20,6 +20,23 @@ model User {
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
+  address Address?
 
   @@unique([email, deletedAt])
+}
+model Address {
+  id           String    @id @default(uuid())
+  street       String
+  number       String
+  city         String
+  state        String
+  zipCode      String
+  complement   String
+  neighborhood String
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  deletedAt    DateTime?
+
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id])
 }

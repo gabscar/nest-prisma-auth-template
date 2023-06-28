@@ -1,6 +1,9 @@
 import { AddressEntity } from './address.entity';
+export abstract class IUserRelations {
+  address: AddressEntity;
+}
 
-export class UserEntity {
+export class UserEntity extends IUserRelations {
   id: string;
   name: string;
   email: string;
@@ -9,10 +12,8 @@ export class UserEntity {
   updatedAt?: Date;
   deletedAt?: Date;
 
-  constructor(userProps: UserEntity) {
+  constructor(userProps: Partial<UserEntity>) {
+    super();
     Object.assign(this, userProps);
   }
-}
-export abstract class IUserRelations {
-  address: AddressEntity;
 }

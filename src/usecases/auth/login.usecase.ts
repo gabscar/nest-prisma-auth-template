@@ -3,27 +3,22 @@ import {
   INJECTION_SERVICE_FINDBY_USER,
 } from '@domain/constants/injections/user.constant';
 import { UserEntity } from '@domain/entities/user.entity';
-import { AuthenticationErrors } from '@domain/errors/user/auth/authenticationErrors';
 import { UsersErrors } from '@domain/errors/user/userError';
 import { IAuthLoginResponse } from '@domain/interfaces/auth/auth.interface';
-import { IFindByUserInput } from '@domain/interfaces/user/findBy.interface';
 import { IAuthService } from '@domain/services/auth/auth.service';
-import { IAbstractService } from '@domain/services/baseAbstract.service';
-import { IOutputFindByUserDto } from '@domain/usecases/user/findBy.usecase';
+import { IFindByUserEntityService } from '@domain/services/entities/user/findby.service';
 import { Inject } from '@nestjs/common';
 
 import {
   AuthLoginParams,
   IAuthLoginUseCase,
-} from 'src/domain/usecases/auth/login.usecase';
+} from '@domain/usecases/auth/login.usecase';
+import { AuthenticationErrors } from '@domain/errors/auth/authError';
 
 export class AuthLoginUseCase implements IAuthLoginUseCase {
   constructor(
     @Inject(INJECTION_SERVICE_FINDBY_USER)
-    private readonly findUserService: IAbstractService<
-      IFindByUserInput,
-      IOutputFindByUserDto
-    >,
+    private readonly findUserService: IFindByUserEntityService,
     @Inject(INJECTION_SERVICE_AUTH)
     private readonly authService: IAuthService,
   ) {}
@@ -32,7 +27,11 @@ export class AuthLoginUseCase implements IAuthLoginUseCase {
     params,
   }: AuthLoginParams): Promise<IAuthLoginResponse | void> {
     const user = await this.findUserService.execute({
-      where: { column: 'email', value: params.email },
+      filters: {
+        where: {
+          AND: [{ column: 'email', value: params.email }],
+        },
+      },
     });
     if (user.isLeft()) {
       throw UsersErrors.userNotFound();

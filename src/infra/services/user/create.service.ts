@@ -5,11 +5,9 @@ import { IOutputCreateUserDto } from '@domain/usecases/user/create.usecase';
 import { Inject } from '@nestjs/common';
 import { right, left } from '@src/shared/either';
 import { INJECTION_REPOSITORY_USER } from '@domain/constants/injections/user.constant';
-import { IAbstractService } from '../../../domain/services/baseAbstract.service';
+import { ICreateUserEntityService } from '@domain/services/entities/user/create.service';
 
-export class CreateUserService
-  implements IAbstractService<ICreateUserInput, IOutputCreateUserDto>
-{
+export class CreateUserService implements ICreateUserEntityService {
   constructor(
     @Inject(INJECTION_REPOSITORY_USER)
     private readonly userRepository: IUserRepositoryDatabase,

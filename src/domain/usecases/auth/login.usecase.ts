@@ -7,6 +7,6 @@ export type AuthLoginParams = {
 };
 
 export type IAuthLoginUseCase = IBaseUseCase<
-  AuthLoginParams,
+  [AuthLoginParams],
   IAuthLoginResponse | void
 >;

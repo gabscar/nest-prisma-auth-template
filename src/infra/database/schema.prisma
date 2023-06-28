@@ -21,7 +21,8 @@ model User {
   deletedAt DateTime?
 
   address Address?
-
+  validationCodes  ValidationCode[]
+  
   @@unique([email, deletedAt])
 }
 model Address {
@@ -39,4 +40,15 @@ model Address {
 
   userId String @unique
   user   User   @relation(fields: [userId], references: [id])
+}
+
+model ValidationCode {
+  id        String              @id @default(uuid())
+  code      String
+  exp       DateTime
+  type      String
+  createdAt DateTime            @default(now())
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
 }

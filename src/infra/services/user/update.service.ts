@@ -1,25 +1,27 @@
 import { UsersErrors } from '@domain/errors/user/userError';
+import { ICreateUserInput } from '@domain/interfaces/user/create.interface';
 import { IUserRepositoryDatabase } from '@domain/repositories/user.repository';
+import { IOutputCreateUserDto } from '@domain/usecases/user/create.usecase';
 import { Inject } from '@nestjs/common';
 import { right, left } from '@src/shared/either';
 import { INJECTION_REPOSITORY_USER } from '@domain/constants/injections/user.constant';
 import {
-  IFindByUserEntityService,
-  IInputFindByUserService,
-  IOutputFindByUserService,
-} from '@domain/services/entities/user/findby.service';
+  IInputUpdateUserService,
+  IUpdateUserEntityService,
+} from '@domain/services/entities/user/update.service';
 
-export class FindUserService implements IFindByUserEntityService {
+export class UpdateUserService implements IUpdateUserEntityService {
   constructor(
     @Inject(INJECTION_REPOSITORY_USER)
     private readonly userRepository: IUserRepositoryDatabase,
   ) {}
 
   async execute(
-    params: IInputFindByUserService,
-  ): Promise<IOutputFindByUserService> {
+    params: IInputUpdateUserService,
+  ): Promise<IOutputCreateUserDto> {
     try {
-      const user = await this.userRepository.findBy(params);
+      const user = await this.userRepository.update(params.where, params.data);
+
       return right(user);
     } catch (err) {
       console.log(err);

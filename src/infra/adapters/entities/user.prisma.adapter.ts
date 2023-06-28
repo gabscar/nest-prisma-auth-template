@@ -1,14 +1,14 @@
-import { UserEntity, UserRelations } from '@domain/entities/user.entity';
+import { UserEntity, IUserRelations } from '@domain/entities/user.entity';
 import { IPaginationOutput } from '@domain/interfaces/common/pagination.interface';
 import { User } from '@prisma/client';
 
 export class UserPrismaAdapter {
-  static get(user: User & Partial<UserRelations>): UserEntity {
+  static get(user: User & Partial<IUserRelations>): UserEntity {
     return this.adapt(user);
   }
 
   static list(
-    users: (User & Partial<UserRelations>)[],
+    users: (User & Partial<IUserRelations>)[],
     page: number,
     max: number,
   ): IPaginationOutput<UserEntity> {
@@ -22,7 +22,7 @@ export class UserPrismaAdapter {
     };
   }
 
-  private static adapt(user: User & Partial<UserRelations>): UserEntity {
+  private static adapt(user: User & Partial<IUserRelations>): UserEntity {
     if (!user) return null;
 
     return new UserEntity({

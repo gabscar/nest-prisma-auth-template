@@ -45,17 +45,6 @@ export class AuthenticationErrors extends IError {
     });
   }
 
-  static invalidCodeError(): IError {
-    return new AuthenticationErrors({
-      statusCode: 401,
-      body: {
-        code: 'AE-005',
-        message: 'Invalid Code',
-        shortMessage: 'invalidCode',
-      },
-    });
-  }
-
   static tokenRenewalTimeExceeded(): IError {
     return new AuthenticationErrors({
       statusCode: 401,

@@ -1,5 +1,4 @@
 import { Inject } from '@nestjs/common';
-
 import { IMailSendForgotPasswordEmail } from '@domain/interfaces/mail.interface';
 import { IQueueProducer } from '@domain/interfaces/queue.interface';
 import { IAuthForgotPasswordUseCase } from '@domain/usecases/auth/forgotPassword.usecase';
@@ -9,7 +8,7 @@ import {
   INJECTION_SERVICE_FINDBY_USER,
 } from '@domain/constants/injections/user.constant';
 import { IFindByUserEntityService } from '@domain/services/entities/user/findby.service';
-import { ICreateValidationCodeEntityService } from '@domain/services/validationCode/create.service';
+import { ICreateValidationCodeEntityService } from '@domain/services/entities/validationCode/create.service';
 import { IAuthService } from '@domain/services/auth/auth.service';
 import { AuthService } from '@infra/services/auth/auth.service';
 import { ForgotError } from '@domain/errors/auth/forgotError';

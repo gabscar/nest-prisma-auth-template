@@ -14,8 +14,8 @@ import {
 } from '@domain/constants/injections/user.constant';
 import { IFindByUserEntityService } from '@domain/services/entities/user/findby.service';
 import { IUpdateUserEntityService } from '@domain/services/entities/user/update.service';
-import { IDeleteValidationCodeEntityService } from '@domain/services/validationCode/delete.service';
-import { IFindValidationCodeEntityService } from '@domain/services/validationCode/find.service';
+import { IDeleteValidationCodeEntityService } from '@domain/services/entities/validationCode/delete.service';
+import { IFindValidationCodeEntityService } from '@domain/services/entities/validationCode/find.service';
 import { ValidationCodeError } from '@domain/errors/validationCode/validationCodeError';
 
 export class AuthRecoverPasswordUseCase implements IAuthRecoverPasswordUseCase {

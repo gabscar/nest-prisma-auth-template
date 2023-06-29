@@ -4,7 +4,7 @@ import { INJECTION_REPOSITORY_VALIDATION_CODE } from '@domain/constants/injectio
 import {
   ICreateValidationCodeEntityService,
   IOutputCreateValidationCodeService,
-} from '@domain/services/validationCode/create.service';
+} from '@domain/services/entities/validationCode/create.service';
 import { IValidationCodeCreateParams } from '@domain/interfaces/validationCode/create.interface';
 import { IValidationCodeRepositoryDatabase } from '@domain/repositories/validationCode.repository';
 import { ValidationCodeError } from '@domain/errors/validationCode/validationCodeError';

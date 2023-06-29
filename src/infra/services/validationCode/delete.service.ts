@@ -7,7 +7,7 @@ import { IValidationCodeRepositoryDatabase } from '@domain/repositories/validati
 import {
   IDeleteValidationCodeEntityService,
   IOutputDeleteValidationCodeService,
-} from '@domain/services/validationCode/delete.service';
+} from '@domain/services/entities/validationCode/delete.service';
 import { ValidationCodeError } from '@domain/errors/validationCode/validationCodeError';
 
 export class DeleteValidationCodeService

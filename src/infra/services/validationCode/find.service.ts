@@ -6,7 +6,7 @@ import { IValidationCodeRepositoryDatabase } from '@domain/repositories/validati
 import {
   IFindValidationCodeEntityService,
   IOutputFindValidationCodeService,
-} from '@domain/services/validationCode/find.service';
+} from '@domain/services/entities/validationCode/find.service';
 import { ValidationCodeError } from '@domain/errors/validationCode/validationCodeError';
 
 export class FindValidationCodeService

@@ -17,20 +17,23 @@ export type UserEntitySeedData = Omit<UserEntity, 'createdAt' | 'updatedAt'>;
 export const userSeedData: UserEntitySeedData[] = [
   {
     id: userSeedUUIDS.admin,
-    name: 'Admilson Simplo',
+    name: 'Admilson Luby',
     email: 'admin@email.com',
     password: hashSync('Lace-4242', 10),
+    address: null,
   },
   {
     id: userSeedUUIDS.commonUser,
     name: 'Bruno Dias',
     email: 'common@email.com',
     password: hashSync('Lace-4242', 10),
+    address: null,
   },
   {
     id: userSeedUUIDS.commonUserTwo,
     name: 'Laila Ferreira',
     email: 'common2@email.com',
     password: hashSync('Lace-4242', 10),
+    address: null,
   },
 ];

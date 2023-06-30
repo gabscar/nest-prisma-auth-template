@@ -23,7 +23,7 @@ export class FindUserService implements IFindByUserEntityService {
       return right(user);
     } catch (err) {
       console.log(err);
-      return left(UsersErrors.entityCreationError());
+      return left(UsersErrors.notFound());
     }
   }
 }

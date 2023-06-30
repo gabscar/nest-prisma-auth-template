@@ -1,6 +1,5 @@
 import { Inject } from '@nestjs/common';
 import { right, left } from '@src/shared/either';
-import { INJECTION_REPOSITORY_VALIDATION_CODE } from '@domain/constants/injections/user.constant';
 import {
   ICreateValidationCodeEntityService,
   IOutputCreateValidationCodeService,
@@ -9,6 +8,7 @@ import { IValidationCodeCreateParams } from '@domain/interfaces/validationCode/c
 import { IValidationCodeRepositoryDatabase } from '@domain/repositories/validationCode.repository';
 import { ValidationCodeError } from '@domain/errors/validationCode/validationCodeError';
 import { randomInt } from 'crypto';
+import { INJECTION_REPOSITORY_VALIDATION_CODE } from '@domain/constants/injections/validationCode.constant';
 
 export class CreateValidationCodeService
   implements ICreateValidationCodeEntityService

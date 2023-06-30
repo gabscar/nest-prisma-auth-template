@@ -7,9 +7,7 @@ import { AuthService } from '@infra/services/auth/auth.service';
 import { ValidationCodeEntity } from '@domain/entities/validationCode.entity';
 import { IAuthService } from '@domain/services/auth/auth.service';
 import {
-  INJECTION_SERVICE_DELETE_VALIDATION_CODE,
   INJECTION_SERVICE_FINDBY_USER,
-  INJECTION_SERVICE_FINDBY_VALIDATION_CODE,
   INJECTION_SERVICE_UPDATE_USER,
 } from '@domain/constants/injections/user.constant';
 import { IFindByUserEntityService } from '@domain/services/entities/user/findby.service';
@@ -17,10 +15,15 @@ import { IUpdateUserEntityService } from '@domain/services/entities/user/update.
 import { IDeleteValidationCodeEntityService } from '@domain/services/entities/validationCode/delete.service';
 import { IFindValidationCodeEntityService } from '@domain/services/entities/validationCode/find.service';
 import { ValidationCodeError } from '@domain/errors/validationCode/validationCodeError';
+import {
+  INJECTION_SERVICE_DELETE_VALIDATION_CODE,
+  INJECTION_SERVICE_FINDBY_VALIDATION_CODE,
+} from '@domain/constants/injections/validationCode.constant';
+import { INJECTION_SERVICE_AUTH } from '@domain/constants/injections/auth.constant';
 
 export class AuthRecoverPasswordUseCase implements IAuthRecoverPasswordUseCase {
   constructor(
-    @Inject(AuthService)
+    @Inject(INJECTION_SERVICE_AUTH)
     private readonly authService: IAuthService,
     @Inject(INJECTION_SERVICE_FINDBY_USER)
     private readonly findUserService: IFindByUserEntityService,
@@ -82,7 +85,7 @@ export class AuthRecoverPasswordUseCase implements IAuthRecoverPasswordUseCase {
       },
     });
     if (!user) {
-      throw UsersErrors.userNotFound();
+      throw UsersErrors.notFound();
     }
 
     return validationCode.value;

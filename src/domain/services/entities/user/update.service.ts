@@ -1,5 +1,5 @@
 import { UserEntity } from '@domain/entities/user.entity';
-import { IError } from '@src/shared/IError';
+import { ApiException } from '@app/exceptions/api.exception';
 import { Either } from '@src/shared/either';
 import { IAbstractService } from '../../baseAbstract.service';
 import { IUpdateUserInput } from '@domain/interfaces/user/update.interface';
@@ -10,7 +10,7 @@ export interface IInputUpdateUserService {
   data: IUpdateUserInput;
 }
 
-export type IOutputUpdateUserService = Either<IError, UserEntity>;
+export type IOutputUpdateUserService = Either<ApiException, UserEntity>;
 
 export type IUpdateUserEntityService = IAbstractService<
   IInputUpdateUserService,

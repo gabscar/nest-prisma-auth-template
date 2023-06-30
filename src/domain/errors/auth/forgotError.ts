@@ -1,69 +1,37 @@
-import { IError } from '@src/shared/IError';
+import { ApiException } from '@app/exceptions/api.exception';
+import { HttpStatus } from '@nestjs/common';
 
-export class ForgotError extends IError {
-  static notMatch(): IError {
-    return new ForgotError({
-      statusCode: 401,
-      body: {
+export class ForgotError extends ApiException {
+  static notMatch(): ApiException {
+    return new ForgotError(
+      {
         code: 'FE-001',
         message: 'Password not match',
         shortMessage: 'notMatch',
       },
-    });
+      HttpStatus.NOT_ACCEPTABLE,
+    );
   }
 
-  static tokenCreationError(): IError {
-    return new ForgotError({
-      statusCode: 500,
-      body: {
+  static tokenCreationError(): ApiException {
+    return new ForgotError(
+      {
         code: 'FE-002',
         message: 'Token creation error',
         shortMessage: 'tokenCreationError',
       },
-    });
+      HttpStatus.INTERNAL_SERVER_ERROR,
+    );
   }
 
-  static invalidTokenError(): IError {
-    return new ForgotError({
-      statusCode: 401,
-      body: {
-        code: 'FE-003',
-        message: 'Invalid token',
-        shortMessage: 'invalidTokenError',
-      },
-    });
-  }
-
-  static tokenExpiredError(): IError {
-    return new ForgotError({
-      statusCode: 401,
-      body: {
-        code: 'FE-004',
-        message: 'Token expired',
-        shortMessage: 'tokenExpiredError',
-      },
-    });
-  }
-
-  static notFoundToken(): IError {
-    return new ForgotError({
-      statusCode: 401,
-      body: {
-        code: 'FE-005',
-        message: 'Not found token',
-        shortMessage: 'notFoundToken',
-      },
-    });
-  }
-
-  static hashError(): IError {
-    return new ForgotError({
-      statusCode: 500,
-      body: {
+  static hashError(): ApiException {
+    return new ForgotError(
+      {
         code: 'FE-006',
         message: 'Hash passowrd error',
         shortMessage: 'hashError',
       },
-    });
+      HttpStatus.INTERNAL_SERVER_ERROR,
+    );
   }
 }

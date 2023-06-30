@@ -1,8 +1,8 @@
-import { IError } from '@src/shared/IError';
+import { ApiException } from '@app/exceptions/api.exception';
 import { Either } from '@src/shared/either';
 import { IAbstractService } from '../../baseAbstract.service';
 
-export type IOutputDeleteValidationCodeService = Either<IError, void>;
+export type IOutputDeleteValidationCodeService = Either<ApiException, void>;
 
 export type IDeleteValidationCodeEntityService = IAbstractService<
   string,

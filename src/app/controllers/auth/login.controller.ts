@@ -1,3 +1,4 @@
+import { INJECTION_USECASE_AUTH } from '@domain/constants/injections/auth.constant';
 import {
   Body,
   Controller,
@@ -11,7 +12,6 @@ import { AuthLoginDto } from 'src/app/dtos/auth/login.dto';
 import { AuthLoginPresenter } from 'src/app/presenters/auth/login.presenter';
 import { IAuthLoginUseCase } from 'src/domain/usecases/auth/login.usecase';
 import { IsPublic } from 'src/infra/decorators/isPublic.decorator';
-import { INJECTION_USECASE_AUTH } from '@domain/constants/injections/user.constant';
 
 @Controller('auth')
 export class AuthLoginController {

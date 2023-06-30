@@ -1,5 +1,4 @@
 import { UsersErrors } from '@domain/errors/user/userError';
-import { ICreateUserInput } from '@domain/interfaces/user/create.interface';
 import { IUserRepositoryDatabase } from '@domain/repositories/user.repository';
 import { IOutputCreateUserDto } from '@domain/usecases/user/create.usecase';
 import { Inject } from '@nestjs/common';
@@ -25,7 +24,7 @@ export class UpdateUserService implements IUpdateUserEntityService {
       return right(user);
     } catch (err) {
       console.log(err);
-      return left(UsersErrors.entityCreationError());
+      return left(UsersErrors.updateEntity());
     }
   }
 }

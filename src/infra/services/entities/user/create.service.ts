@@ -20,7 +20,7 @@ export class CreateUserService implements ICreateUserEntityService {
       return right(user);
     } catch (err) {
       console.log(err);
-      return left(UsersErrors.entityCreationError());
+      return left(UsersErrors.createEntity());
     }
   }
 }

@@ -1,7 +1,4 @@
-import {
-  INJECTION_SERVICE_AUTH,
-  INJECTION_SERVICE_CREATE_USER,
-} from '@domain/constants/injections/user.constant';
+import { INJECTION_SERVICE_CREATE_USER } from '@domain/constants/injections/user.constant';
 import { UsersErrors } from '@domain/errors/user/userError';
 import { ICreateUserInput } from '@domain/interfaces/user/create.interface';
 import { IOutputCreateUserDto } from '@domain/usecases/user/create.usecase';
@@ -10,6 +7,7 @@ import { UserEntity } from '@domain/entities/user.entity';
 import { IAbstractService } from '@domain/services/baseAbstract.service';
 import { IAuthService } from '@domain/services/auth/auth.service';
 import { AuthenticationErrors } from '@domain/errors/auth/authError';
+import { INJECTION_SERVICE_AUTH } from '@domain/constants/injections/auth.constant';
 
 export class CreateUserUseCase {
   constructor(
@@ -30,7 +28,7 @@ export class CreateUserUseCase {
     });
 
     if (user.isLeft()) {
-      throw UsersErrors.entityCreationError();
+      throw UsersErrors.createEntity();
     }
 
     return user.value;

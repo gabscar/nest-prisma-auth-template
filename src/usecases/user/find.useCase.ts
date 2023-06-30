@@ -23,7 +23,7 @@ export class FindUserUseCase implements IFindByUserUseCase {
     });
 
     if (user.isLeft()) {
-      throw UsersErrors.userNotFound();
+      throw UsersErrors.notFound();
     }
 
     return user.value;

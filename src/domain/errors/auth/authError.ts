@@ -1,68 +1,81 @@
-import { IError } from '@src/shared/IError';
+import { ApiException } from '@app/exceptions/api.exception';
+import { HttpStatus } from '@nestjs/common';
 
-export class AuthenticationErrors extends IError {
-  static invalidCredentials(): IError {
-    return new AuthenticationErrors({
-      statusCode: 401,
-      body: {
-        code: 'AE-001',
+export class AuthenticationErrors extends ApiException {
+  static invalidCredentials(): ApiException {
+    return new AuthenticationErrors(
+      {
+        code: 'AUT-001',
         message: 'Password wrong',
         shortMessage: 'wrongCredentials',
       },
-    });
+      HttpStatus.UNAUTHORIZED,
+    );
   }
 
-  static tokenCreationError(): IError {
-    return new AuthenticationErrors({
-      statusCode: 500,
-      body: {
-        code: 'AE-002',
+  static tokenCreationError(): ApiException {
+    return new AuthenticationErrors(
+      {
+        code: 'AUT-002',
         message: 'Token creation error',
         shortMessage: 'tokenCreationError',
       },
-    });
+      HttpStatus.INTERNAL_SERVER_ERROR,
+    );
   }
 
-  static invalidTokenError(): IError {
-    return new AuthenticationErrors({
-      statusCode: 401,
-      body: {
-        code: 'AE-003',
+  static invalidTokenError(): ApiException {
+    return new AuthenticationErrors(
+      {
+        code: 'AUT-003',
         message: 'Invalid token',
         shortMessage: 'invalidTokenError',
       },
-    });
+      HttpStatus.UNAUTHORIZED,
+    );
   }
 
-  static tokenExpiredError(): IError {
-    return new AuthenticationErrors({
-      statusCode: 401,
-      body: {
-        code: 'AE-004',
+  static tokenExpiredError(): ApiException {
+    return new AuthenticationErrors(
+      {
+        code: 'AUT-004',
         message: 'Token expired',
         shortMessage: 'tokenExpiredError',
       },
-    });
+      HttpStatus.UNAUTHORIZED,
+    );
   }
 
-  static tokenRenewalTimeExceeded(): IError {
-    return new AuthenticationErrors({
-      statusCode: 401,
-      body: {
-        code: 'AE-006',
+  static invalidCodeError(): ApiException {
+    return new AuthenticationErrors(
+      {
+        code: 'AUT-005',
+        message: 'Invalid Code',
+        shortMessage: 'invalidCode',
+      },
+      HttpStatus.UNAUTHORIZED,
+    );
+  }
+
+  static tokenRenewalTimeExceeded(): ApiException {
+    return new AuthenticationErrors(
+      {
+        code: 'AUT-006',
         message: 'Time to renewal token exceeded',
         shortMessage: 'tokenRenewalTimeExceeded',
       },
-    });
+      HttpStatus.UNAUTHORIZED,
+    );
   }
-  static notAllowed(): IError {
-    return new AuthenticationErrors({
-      statusCode: 405,
-      body: {
-        code: 'AU-007',
-        message: 'You not have permission to acess this resource',
+
+  static notAllowed(): ApiException {
+    return new AuthenticationErrors(
+      {
+        code: 'AUT-007',
+        message: 'You not have permission to access this resource',
         shortMessage: 'notAllowedErr',
       },
-    });
+      HttpStatus.METHOD_NOT_ALLOWED,
+    );
   }
 }

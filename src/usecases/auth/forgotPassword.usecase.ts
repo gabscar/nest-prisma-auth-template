@@ -3,15 +3,14 @@ import { IMailSendForgotPasswordEmail } from '@domain/interfaces/mail.interface'
 import { IQueueProducer } from '@domain/interfaces/queue.interface';
 import { IAuthForgotPasswordUseCase } from '@domain/usecases/auth/forgotPassword.usecase';
 import { SendEmailProducerBull } from '@infra/queues/producers/sendEmail.producer';
-import {
-  INJECTION_SERVICE_CREATE_VALIDATION_CODE,
-  INJECTION_SERVICE_FINDBY_USER,
-} from '@domain/constants/injections/user.constant';
+import { INJECTION_SERVICE_FINDBY_USER } from '@domain/constants/injections/user.constant';
 import { IFindByUserEntityService } from '@domain/services/entities/user/findby.service';
 import { ICreateValidationCodeEntityService } from '@domain/services/entities/validationCode/create.service';
 import { IAuthService } from '@domain/services/auth/auth.service';
 import { AuthService } from '@infra/services/auth/auth.service';
 import { ForgotError } from '@domain/errors/auth/forgotError';
+import { INJECTION_SERVICE_CREATE_VALIDATION_CODE } from '@domain/constants/injections/validationCode.constant';
+import { INJECTION_SERVICE_AUTH } from '@domain/constants/injections/auth.constant';
 
 export class AuthForgotPasswordUseCase implements IAuthForgotPasswordUseCase {
   constructor(
@@ -20,7 +19,7 @@ export class AuthForgotPasswordUseCase implements IAuthForgotPasswordUseCase {
     @Inject(INJECTION_SERVICE_CREATE_VALIDATION_CODE)
     private readonly createValidationCodeService: ICreateValidationCodeEntityService,
 
-    @Inject(AuthService)
+    @Inject(INJECTION_SERVICE_AUTH)
     private readonly authService: IAuthService,
     @Inject(SendEmailProducerBull)
     private readonly sendEmailQueue: IQueueProducer,

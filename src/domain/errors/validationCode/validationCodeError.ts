@@ -1,57 +1,58 @@
-import { IError } from '@src/shared/IError';
+import { ApiException } from '@app/exceptions/api.exception';
+import { HttpStatus } from '@nestjs/common';
 
-export class ValidationCodeError extends IError {
-  static tokenCreationError(): IError {
-    return new ValidationCodeError({
-      statusCode: 500,
-      body: {
+export class ValidationCodeError extends ApiException {
+  static tokenCreationError(): ApiException {
+    return new ValidationCodeError(
+      {
         code: 'VC-002',
         message: 'Token creation error',
         shortMessage: 'tokenCreationError',
       },
-    });
+      HttpStatus.INTERNAL_SERVER_ERROR,
+    );
   }
 
-  static invalidTokenError(): IError {
-    return new ValidationCodeError({
-      statusCode: 401,
-      body: {
+  static invalidTokenError(): ApiException {
+    return new ValidationCodeError(
+      {
         code: 'VC-003',
         message: 'Invalid token',
         shortMessage: 'invalidTokenError',
       },
-    });
+      HttpStatus.BAD_REQUEST,
+    );
   }
 
-  static tokenExpiredError(): IError {
-    return new ValidationCodeError({
-      statusCode: 401,
-      body: {
+  static tokenExpiredError(): ApiException {
+    return new ValidationCodeError(
+      {
         code: 'VC-004',
         message: 'Token expired',
         shortMessage: 'tokenExpiredError',
       },
-    });
+      HttpStatus.BAD_REQUEST,
+    );
   }
 
-  static notFoundToken(): IError {
-    return new ValidationCodeError({
-      statusCode: 401,
-      body: {
+  static notFoundToken(): ApiException {
+    return new ValidationCodeError(
+      {
         code: 'VC-005',
         message: 'Not found token',
         shortMessage: 'notFoundToken',
       },
-    });
+      HttpStatus.NOT_FOUND,
+    );
   }
-  static deleteToken(): IError {
-    return new ValidationCodeError({
-      statusCode: 401,
-      body: {
+  static deleteToken(): ApiException {
+    return new ValidationCodeError(
+      {
         code: 'VC-006',
         message: 'Error in delete validation code',
         shortMessage: 'deleteToken',
       },
-    });
+      HttpStatus.INTERNAL_SERVER_ERROR,
+    );
   }
 }

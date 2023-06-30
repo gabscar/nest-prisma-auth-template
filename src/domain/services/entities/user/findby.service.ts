@@ -1,6 +1,6 @@
 import { IUserRelations, UserEntity } from '@domain/entities/user.entity';
 import { IUseCaseOptions } from '@domain/interfaces/common/useCaseOptions.interface';
-import { IError } from '@src/shared/IError';
+import { ApiException } from '@app/exceptions/api.exception';
 import { Either } from '@src/shared/either';
 import { IAbstractService } from '../../baseAbstract.service';
 
@@ -12,7 +12,7 @@ export type IInputFindByUserService = IUseCaseOptions<
   IUserRelations
 >;
 
-export type IOutputFindByUserService = Either<IError, UserEntity>;
+export type IOutputFindByUserService = Either<ApiException, UserEntity>;
 
 export type IFindByUserEntityService = IAbstractService<
   IInputFindByUserService,

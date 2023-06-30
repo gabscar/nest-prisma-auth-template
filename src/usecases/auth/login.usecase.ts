@@ -1,7 +1,3 @@
-import {
-  INJECTION_SERVICE_AUTH,
-  INJECTION_SERVICE_FINDBY_USER,
-} from '@domain/constants/injections/user.constant';
 import { UserEntity } from '@domain/entities/user.entity';
 import { UsersErrors } from '@domain/errors/user/userError';
 import { IAuthLoginResponse } from '@domain/interfaces/auth/auth.interface';
@@ -14,6 +10,8 @@ import {
   IAuthLoginUseCase,
 } from '@domain/usecases/auth/login.usecase';
 import { AuthenticationErrors } from '@domain/errors/auth/authError';
+import { INJECTION_SERVICE_FINDBY_USER } from '@domain/constants/injections/user.constant';
+import { INJECTION_SERVICE_AUTH } from '@domain/constants/injections/auth.constant';
 
 export class AuthLoginUseCase implements IAuthLoginUseCase {
   constructor(
@@ -23,9 +21,7 @@ export class AuthLoginUseCase implements IAuthLoginUseCase {
     private readonly authService: IAuthService,
   ) {}
 
-  async execute({
-    params,
-  }: AuthLoginParams): Promise<IAuthLoginResponse | void> {
+  async execute({ params }: AuthLoginParams): Promise<IAuthLoginResponse> {
     const user = await this.findUserService.execute({
       filters: {
         where: {
@@ -34,7 +30,7 @@ export class AuthLoginUseCase implements IAuthLoginUseCase {
       },
     });
     if (user.isLeft()) {
-      throw UsersErrors.userNotFound();
+      throw UsersErrors.notFound();
     }
 
     const passwordMatch = await this.authService.compare(

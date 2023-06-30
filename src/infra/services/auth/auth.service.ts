@@ -12,7 +12,7 @@ export class AuthService implements IAuthService {
 
   constructor(private readonly jwtService: JwtService) {}
 
-  sign<T extends string | object | Buffer>(input: T): string {
+  sign<T extends object | Buffer>(input: T): string {
     return this.jwtService.sign(input);
   }
 

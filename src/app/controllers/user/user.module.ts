@@ -8,7 +8,7 @@ import { CreateUserController } from './create.controller';
 import { UserRepositoryDatabase } from '@infra/repositories/user.repository';
 import { DatabaseModule } from '@infra/database/database.module';
 import { CreateUserUseCase } from '@usecases/user/create.usecase';
-import { CreateUserService } from '@infra/services/user/create.service';
+import { CreateUserService } from '@infra/services/entities/user/create.service';
 import { AuthModule } from '../auth/auth.module';
 
 const servicesArr = [

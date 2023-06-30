@@ -11,7 +11,7 @@ export class MailService implements IMailService {
     await this.mailerService.sendMail({
       to: params.to,
       from: process.env.SMPT_FROM,
-      subject: `SIMPLO: ${params.subject}`,
+      subject: `Luby: ${params.subject}`,
       template: params.templateName,
       attachments: params.attachments,
       context: params.data,

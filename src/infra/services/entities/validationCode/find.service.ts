@@ -1,6 +1,5 @@
 import { Inject } from '@nestjs/common';
 import { right, left } from '@src/shared/either';
-import { INJECTION_REPOSITORY_VALIDATION_CODE } from '@domain/constants/injections/user.constant';
 
 import { IValidationCodeRepositoryDatabase } from '@domain/repositories/validationCode.repository';
 import {
@@ -8,6 +7,7 @@ import {
   IOutputFindValidationCodeService,
 } from '@domain/services/entities/validationCode/find.service';
 import { ValidationCodeError } from '@domain/errors/validationCode/validationCodeError';
+import { INJECTION_REPOSITORY_VALIDATION_CODE } from '@domain/constants/injections/validationCode.constant';
 
 export class FindValidationCodeService
   implements IFindValidationCodeEntityService
